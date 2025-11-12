@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-docker-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-docker-app
+  template:
+    metadata:
+      labels:
+        app: python-docker-app
+    spec:
+      containers:
+        - name: python-docker-container
+          image: soumitha3/python-docker-app1:latest
+          ports:
+            - containerPort: 5000

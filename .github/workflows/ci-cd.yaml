@@ -1,4 +1,4 @@
-name: Build and Deploy to Kubernetes
+name: Build and Push Docker Image
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,12 +28,3 @@ jobs:
           context: .
           push: true
           tags: soumitha3/python-docker-app1:latest
-
-      - name: Deploy to Kubernetes
-        uses: azure/k8s-deploy@v4
-        with:
-          manifests: |
-            deployment.yaml
-            service.yaml
-          images: |
-            soumitha3/python-docker-app1:latest
